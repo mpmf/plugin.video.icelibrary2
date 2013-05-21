@@ -1,0 +1,33 @@
+<strings>
+	<!-- Icefilms -->
+	<string id="30100">Icefilms URL</string>
+	<!-- Accounts -->
+	<string id="30200">Hide successful login nofifications</string>
+	<string id="30201">    Username</string>
+	<string id="30202">    Password</string>
+	<string id="30203">    Real-Debrid</string>
+	<string id="30204">    Movreel</string>
+	<string id="30205">    Sharbees</string>
+	<!-- Database -->
+	<string id="30500">Use SQLite Database</string>
+	<string id="30501">Use MySQL Database</string>
+	<string id="30502">MySQL Host</string>
+	<string id="30503">Database Name</string>
+	<string id="30504">Username</string>
+	<string id="30505">Password</string>
+	<!-- Directories -->
+	<string id="30300">Use custom directory</string>
+	<string id="30301">    Movie directory</string>	
+	<string id="30302">Use filters</string>
+	<string id="30303">    Released later than</string>
+	<string id="30304">    HD-only</string>
+	<string id="30400">Use custom directory</string>
+	<string id="30401">    TV show directory</string>	
+	<string id="30402">Use filters</string>
+	<string id="30403">    Released later than</string>
+	<!-- Automatic Update -->
+	<string id="30600">Use automatic updates</string>
+	<string id="30601">    Update timer</string>
+	<string id="30602">    Get new episodes from favorite TV shows</string>
+	<string id="30603">    Get new movies</string>
+</strings>

@@ -1,0 +1,46 @@
+<settings>
+	<category label="Icefilms">
+		<setting id="icefilms-url" type="text" label="30100" default="http://www.icefilms.info" />
+	</category>
+	<category label="Database">
+		<setting id="database_sqlite" type="bool" label="30500" default="true" enable="eq(1,false)"/>		
+		<setting id="database_mysql" type="bool" label="30501" default="false" enable="!eq(-1,false)"/>
+		<setting id="database_mysql_host" type="text" label="30502" default="" enable="!eq(-1,false)" />
+		<setting id="database_mysql_name" type="text" label="30503" default="" enable="!eq(-2,false)" />
+		<setting id="database_mysql_user" type="text" label="30504" default="" enable="!eq(-3,false)" />
+		<setting id="database_mysql_pass" type="text" label="30505" option="hidden" default="" enable="!eq(-5,false)"/>
+	</category>
+	<category label="Accounts">
+		<setting id="hide-successful-login-messages" type="bool" label="30200" default="true"/>
+		<setting id="realdebrid-account" type="bool" label="30203" default="false"/>
+		<setting id="realdebrid-username" type="text" label="30201" default="" enable="!eq(-1,false)"/>
+		<setting id="realdebrid-password" type="text" label="30202" default="" option="hidden" enable="!eq(-2,false)"/>
+		<setting id="movreel-account" type="bool" label="30204" default="false"/>
+		<setting id="movreel-username" type="text" label="30201" default="" enable="!eq(-1,false)"/>
+		<setting id="movreel-password" type="text" label="30202" default="" option="hidden" enable="!eq(-2,false)"/>
+		<setting id="sharebees-account" type="bool" label="30205" default="false"/>
+		<setting id="sharebees-username" type="text" label="30201" default="" enable="!eq(-1,false)"/>
+		<setting id="sharebees-password" type="text" label="30202" default="" option="hidden" enable="!eq(-2,false)"/>	
+	</category>
+
+	<category label="Movies">
+		<setting id="movie_custom_directory" type="bool" label="30300" default="false"/>
+		<setting id="movie_directory" type="folder" label="30301" default="" enable="!eq(-1,false)"/>
+		<setting id="movie_filters" type="bool" label="30302" default="false"/>
+		<setting id="movie_minimum_year" type="text" label="30303" default="1900" enable="!eq(-1,false)"/>
+		<setting id="movie_hd_only" type="bool" label="30304" default="false" enable="!eq(-2,false)"/>
+	</category>
+	<category label="TV shows">
+		<setting id="tv_show_custom_directory" type="bool" label="30400" default="false"/>
+		<setting id="tv_show_directory" type="folder" label="30401" default="" enable="!eq(-1,false)"/>
+		<setting id="tv_show_filters" type="bool" label="30402" default="false"/>
+		<setting id="tv_show_minimum_year" type="text" label="30403" default="1900" enable="!eq(-1,false)"/>
+	</category>
+	<category label="Auto-update">
+		<setting id="auto_update" type="bool" label="30600" default="false"/>
+	    <setting id="update_timer" type="enum" values="2h|5h|10h|15h|24h" label="30601" default="1" enable="!eq(-1,false)"/>
+		<setting id="update_tvshows" type="bool" label="30602" default="false" enable="!eq(-2,false)"/>
+		<setting id="update_movies" type="bool" label="30603" default="false" enable="!eq(-3,false)"/>
+	</category>
+	
+</settings>

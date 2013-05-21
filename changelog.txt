@@ -1,0 +1,37 @@
+[B]Version 2.0.12[/B]
+Billionuploads captcha fix.
+
+[B]Version 2.0.11[/B]
+Added graceful failure to watched flag update under sqlite.
+Added Recently Aired smartlist
+
+[B]Version 2.0.9/10[/B]
+Currupted build
+
+[B]Version 2.0.8[/B]
+Minor fix to watched flag update under sqlite.
+
+[B]Version 2.0.7[/B]
+Fixed add to favorites automatic scrape
+Added urlresolver support. Defaults to urlresolver with failure falls back to native resolvers.
+
+[B]Version 2.0.6[/B]
+Added SQLite via pysqlite2 failing sqlite3
+Added MySQL backend support with MySQLdb failing mysql connector
+Automated ice_favorites table creation
+Added example cle tvshow scraper icescraper.py
+
+[B]Version 2.0.5[/B]
+Fixed folder naming.
+
+[B]Version 2.0.3[/B]
+Added unique restraint to favorites table.
+
+[B]Version 2.0.2[/B]
+Added episode table.
+
+[B]Version 2.0.1[/B]
+Added movreel account support.
+
+[B]Version 2.0.0[/B]
+Initial merge with Icefilms. Using sqlite for favorites.
