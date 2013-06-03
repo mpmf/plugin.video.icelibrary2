@@ -31,8 +31,8 @@ art = icepath+'/resources/art'
 ############################
 
 
-import jsunpack
-import debridroutines
+#import jsunpack
+#import debridroutines
 from BeautifulSoup import BeautifulSoup, Tag, NavigableString
 #import resolvers
 
@@ -1080,13 +1080,21 @@ def HandleOptions(name, mirrorpage, path):
 		return
 	#AUTO_PLAY_PARTS
 	my_icefilms_url = GetSource(int(mirror_id[mirror_select]), args, cookie)
-	resolved_url = urlresolver.HostedMediaFile(url=my_icefilms_url).resolve() 
+	resolved_url = None
+	try:
+		resolved_url = urlresolver.HostedMediaFile(url=my_icefilms_url).resolve()
+	except:
+		print "Unable to resolve with urlresolver"
+	
 	if not resolved_url:
-		page=HandleVidlink(my_icefilms_url)
-		if page == None:
-			return
-		resolved_url = page
+		from donnie import localresolvers
+		print "Attempting localresolver"
+		Resolver = localresolvers.localresolver()
+		resolved_url = Resolver.resolve(my_icefilms_url)
 		
+	if not resolved_url:
+		return False
+	
 	print "Playing File: " + path
 
 	if DB_TYPE == 'mysql':
