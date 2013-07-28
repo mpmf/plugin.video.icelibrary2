@@ -1031,6 +1031,11 @@ def HandleOptions(name, mirrorpage, path):
 		                isjumbo = re.search('Hosted by JumboFiles', str(link))
 		                ismovreel = re.search('Hosted by Movreel', str(link))
 		                isbillion = re.search('Hosted by BillionUploads', str(link))
+				ismega = re.search('Hosted by MegaRelease', str(link))
+				islem = re.search('Hosted by LemUploads', str(link))
+				ishuge = re.search('Hosted by HugeFiles', str(link))
+				isentero = re.search('Hosted by EntroUpload', str(link))
+				isepic = re.search('Hosted by EpicShare', str(link))
 
 		                if is2shared:
 					opt=opt+': 2S'
@@ -1054,6 +1059,16 @@ def HandleOptions(name, mirrorpage, path):
 		                	opt=opt+': MR'
 		                elif isbillion:
 		                	opt=opt+': BU'
+				elif islem:
+		                	opt=opt+': LU'
+		                elif ishuge:
+		                	opt=opt+': HF'
+		                elif ismega:
+		                	opt=opt+': ME'
+		                elif isentero:
+		                	opt=opt+': EU'
+				elif isepic:
+		                	opt=opt+': ES'
 			
 				mirror_options.append(opt)
 				mirror_id.append(link['onclick'][3:len(link['onclick'])-1])
