@@ -41,7 +41,8 @@ cookie_path = os.path.join(datapath, 'cookies')
 if not os.path.exists(cookie_path):
 	os.makedirs(cookie_path)
 cookie_jar = os.path.join(cookie_path, "cookiejar.lwp")
-USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36'
+ACCEPT = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
 DATA_PATH = os.path.join(xbmc.translatePath('special://profile/addon_data/' + ADDON_ID), '')
 
 if ADDON.getSetting('movie_custom_directory') == "true":
@@ -286,6 +287,7 @@ def GetURL(url, params = None, referrer = ICEFILMS_REFERRER, cookie = None, save
          req = urllib2.Request(url)
 
      req.add_header('User-Agent', USER_AGENT)
+     req.add_header('Accept', ACCEPT)
 
      # as of 2011-06-02, IceFilms sources aren't displayed unless a valid referrer header is supplied:
      # http://forum.xbmc.org/showpost.php?p=810288&postcount=1146
