@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.icelibrary2" name="IceLibrary2" version="2.0.11" provider-name="DudeHere">
+<addon id="plugin.video.icelibrary2" name="IceLibrary2" version="2.0.13" provider-name="DudeHere">
     <requires>
         <import addon="xbmc.python" version="2.0"/>
         <import addon="script.module.simplejson"/>
