@@ -755,10 +755,9 @@ def GetFavorites(file_name, silent = False):
 	print "Fetching favorites"
 	pDialog = xbmcgui.DialogProgress()
 	if not silent:
-		pDialog.create(' Scraping favorites')
+		pDialog.create('Scraping favorites')
 	DBC.execute("SELECT name, url FROM ice_favorites ORDER BY name ASC")
 	rows = DBC.fetchall()
-	print rows
 	index = 0
 	for row in rows:
 		name = str(row[0])
@@ -770,7 +769,7 @@ def GetFavorites(file_name, silent = False):
 				return
 			print "Scraping: " + name
 			pDialog.update(percent, "Scraping TV show", name)
-			GetEpisodes(name, url, silent)
+		GetEpisodes(name, url, silent)
 
 
 	
@@ -2016,7 +2015,7 @@ class MyPlayer (xbmc.Player):
 ### Auto-update ###
 ###################
 
-def AutoUpdateLibrary():
+'''def AutoUpdateLibrary():
 	if ADDON.getSetting('auto_update') == "false":
 		return
 	
@@ -2045,7 +2044,31 @@ def AutoUpdateLibrary():
 	xbmc.executebuiltin('AlarmClock(updatelibrary,XBMC.RunScript('+ADDON_ID+',"?mode=100"),' +
 						timer_amounts[ADDON.getSetting('update_timer')] +  ',true)')
 
-	print "IceLibrary update complete"
+	print "IceLibrary update complete"'''
+
+
+def auto_update_tvshows():
+	if ADDON.getSetting('auto_update') == "false":
+		return
+	print "executing tvshows"
+	UpdateFavorites(True)
+	update_update_library(what='tvshows')
+
+def auto_update_movies():
+	if ADDON.getSetting('auto_update') == "false":
+		return
+	print "executing movies"
+	UpdateMovies(True)
+	update_update_library(what='movies')
+	
+
+def update_update_library(what='tvshows'):	
+	if ADDON.getSetting('update_library') == "false":
+		return
+	if what=='tvshows':
+		xbmc.executebuiltin('UpdateLibrary(video,' + TV_SHOWS_PATH + ')')
+	else:
+		xbmc.executebuiltin('UpdateLibrary(video,' + MOVIES_PATH + ')')	
 		
 ##################
 ### Addon menu ###
@@ -2138,7 +2161,7 @@ def MoviesSetupMenu(): #1300
 	AddOption("Scrape all movies",False,1310)
 	AddOption("Add IceLibrary movie directory to XBMC sources",False,1320)
 	AddOption("Remove the movie directory and all (Icefilms) movie files",False,1330)
-	AddOption("Install auto update code in autoexec.py",False,1340)
+	#AddOption("Install auto update code in autoexec.py",False,1340)
 	xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def GetAllMovies(): #1310
@@ -2344,7 +2367,9 @@ elif mode==30: #Add TV show to favorites
 elif mode==40: #Remove TV show from favorites
 	RemoveFromFavorites(name)
 elif mode==100: #Update the library and set a timer for the next update
-	AutoUpdateLibrary()
+	auto_update_tvshows()
+elif mode==110: #Update the library and set a timer for the next update
+	auto_update_movies()
 elif mode==1000: #Movies menu
 	MoviesMenu()
 elif mode==1100: #Update movies

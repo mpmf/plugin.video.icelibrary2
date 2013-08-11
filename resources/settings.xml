@@ -10,7 +10,7 @@
 		<setting id="database_mysql_user" type="text" label="30504" default="" enable="!eq(-3,false)" />
 		<setting id="database_mysql_pass" type="text" label="30505" option="hidden" default="" enable="!eq(-5,false)"/>
 	</category>
-	<category label="Accounts">
+	<!--<category label="Accounts">
 		<setting id="hide-successful-login-messages" type="bool" label="30200" default="true"/>
 		<setting id="realdebrid-account" type="bool" label="30203" default="false"/>
 		<setting id="realdebrid-username" type="text" label="30201" default="" enable="!eq(-1,false)"/>
@@ -22,7 +22,7 @@
 		<setting id="sharebees-username" type="text" label="30201" default="" enable="!eq(-1,false)"/>
 		<setting id="sharebees-password" type="text" label="30202" default="" option="hidden" enable="!eq(-2,false)"/>	
 	</category>
-
+	-->
 	<category label="Movies">
 		<setting id="movie_custom_directory" type="bool" label="30300" default="false"/>
 		<setting id="movie_directory" type="folder" label="30301" default="" enable="!eq(-1,false)"/>
@@ -38,9 +38,10 @@
 	</category>
 	<category label="Auto-update">
 		<setting id="auto_update" type="bool" label="30600" default="false"/>
-	    <setting id="update_timer" type="enum" values="2h|5h|10h|15h|24h" label="30601" default="1" enable="!eq(-1,false)"/>
-		<setting id="update_tvshows" type="bool" label="30602" default="false" enable="!eq(-2,false)"/>
-		<setting id="update_movies" type="bool" label="30603" default="false" enable="!eq(-3,false)"/>
+	    	<setting id="update_timer" type="enum" values="2h|4h|8h|12h|24h" label="30601" default="1" enable="!eq(-1,false)"/>
+		<setting id="update_tvshows" type="bool" label="30602" default="true" enable="!eq(-2,false)"/>
+		<setting id="update_movies" type="bool" label="30603" default="true" enable="!eq(-3,false)"/>
+		<setting id="update_library" type="bool" label="30604" default="true" enable="!eq(-3,false)"/>
 	</category>
 	
 </settings>

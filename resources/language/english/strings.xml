@@ -30,4 +30,6 @@
 	<string id="30601">    Update timer</string>
 	<string id="30602">    Get new episodes from favorite TV shows</string>
 	<string id="30603">    Get new movies</string>
+	<string id="30604">    Update Videolibrary</string>
+	<string id="30605">    Download Artwork</string>
 </strings>
