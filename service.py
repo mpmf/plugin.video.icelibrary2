@@ -2,6 +2,7 @@ import time, sys, os, math
 from datetime import datetime, date
 import xbmc
 import xbmcaddon
+import xbmcvfs
 from donnie.settings import Settings
 
 def str2bool(v):
@@ -73,10 +74,10 @@ class IceLibraryService:
 		self.setLastRun('movies', '')
 	
 	def removeFile(self, path):
-		if os.path.exists(path):
+		if xbmcvfs.exists(path):
 		    try:
 			print "Unlinking: %s" % path
-			os.remove(path)
+			xbmcvfs.delete(path)
 		    except:
 			print "Exception: ",str(sys.exc_info())
 
