@@ -7,7 +7,7 @@
 ############################	
 
 import urllib2, urllib, sys, os, re, random, copy, shutil
-import xbmc,xbmcplugin,xbmcgui,xbmcaddon
+import xbmc,xbmcplugin,xbmcgui,xbmcaddon,xbmcvfs
 import threading
 import trace
 import urlresolver
@@ -267,7 +267,8 @@ def RemoveDirectory(dir):
 			pDialog = xbmcgui.DialogProgress()
 			pDialog.create(' Removing directory...')
 			pDialog.update(0, dir)	
-			shutil.rmtree(dir)
+			# TODO: implement this using xbmcvfs
+			# shutil.rmtree(dir)
 			pDialog.close()
 			Notification("Directory removed", dir)
 		else:
@@ -372,7 +373,7 @@ def CreateStreamFile(name, href, dir, remove_year, show_name=''):
 		filename = CleanFileName(name, remove_year) + ".strm"
 		path = os.path.join(dir, filename)
 		strm_string = "plugin://" + ADDON_ID + "/?href=" + urllib.quote(href) + "&mode=10&name=" + urllib.quote(show_name + name) + "&path="+ urllib.quote(path)		
-		file = open(path,'w')
+		file = xbmcvfs.File(path,'w')
 		file.write(strm_string)
 		file.close()
 	except:
@@ -423,8 +424,8 @@ def RemoveFromFavorites(id):
 
 def CreateDirectory(dir_path):
 	dir_path = dir_path.strip()
-	if not os.path.exists(dir_path):
-		os.makedirs(dir_path)
+	if not xbmcvfs.exists(dir_path):
+		xbmcvfs.mkdirs(dir_path)
 			
 def CleanFileName(s, remove_year, use_encoding = False, use_blanks = True):
 	if remove_year:
