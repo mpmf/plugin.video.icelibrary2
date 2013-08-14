@@ -260,15 +260,37 @@ def handle_file(filename,getmode=''):
           except:
                print 'opening failed'
 
+			   
+def CountFilesAndDirs(dir):
+	dirs,files=xbmcvfs.listdir(dir)
+	count=len(files)+1
+	for subdir in dirs:
+		count=count+CountFilesAndDirs(dir+subdir+'/')
+	return count
+			   
+def RemoveDirectoryRecursivelly(dir, curCount, total, pDialog):
+	dirs,files=xbmcvfs.listdir(dir)
+	for subdir in dirs:
+		curCount=RemoveDirectoryRecursivelly(dir+subdir+'/', curCount, total, pDialog)
+	for file in files:
+		xbmcvfs.delete(dir+file)
+		curCount=curCount+1
+		pDialog.update(int(curCount*100.0/total), file)
+	xbmcvfs.rmdir(dir)
+	curCount=curCount+1
+	pDialog.update(int(curCount*100.0/total), dir)
+	return curCount
+			   
 def RemoveDirectory(dir):
 	dialog = xbmcgui.Dialog()
 	if dialog.yesno("Remove directory", "Do you want to remove directory?", dir):
-		if os.path.exists(dir):
+		if xbmcvfs.exists(dir):
 			pDialog = xbmcgui.DialogProgress()
 			pDialog.create(' Removing directory...')
 			pDialog.update(0, dir)	
-			# TODO: implement this using xbmcvfs
-			# shutil.rmtree(dir)
+			
+			RemoveDirectoryRecursivelly(dir, 0, CountFilesAndDirs(dir), pDialog) # implemented using xbmcvfs			
+			
 			pDialog.close()
 			Notification("Directory removed", dir)
 		else:
@@ -494,13 +516,15 @@ def SetupAutoUpdate():
 		file = open(source_path, 'r')
 		content=file.read()
 		file.close()
-		index = content.find("xbmc.executebuiltin('RunScript(" + ADDON_ID + ",\"?mode=100\")')")
+		# index = content.find("xbmc.executebuiltin('RunScript(" + ADDON_ID + ",\"?mode=100\")')")
+		index = content.find("xbmc.executebuiltin('RunPlugin(\"plugin://" + ADDON_ID + "/?mode=100\")')") # Fix the bayfiles error without touching its script
 		if index > 0:
 			Notification("Already set up", "Auto update is already set up in autoexec.py")
 			return
 	except:
 		content = "import xbmc\n"
-	content += "\nxbmc.executebuiltin('RunScript(" + ADDON_ID + ",\"?mode=100\")')"
+	# content += "\nxbmc.executebuiltin('RunScript(" + ADDON_ID + ",\"?mode=100\")')"
+	content += "\nxbmc.executebuiltin('RunPlugin(\"plugin://" + ADDON_ID + "/?mode=100\")')" # Fix the bayfiles error without touching its script
 	
 	file = open(source_path, 'w')
 	file.write(content)
